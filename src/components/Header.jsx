@@ -9,7 +9,7 @@ const Header = () => {
     }
 
     return (
-        <header className='w-full flex flex-col items-center justify-center lg:px-8 px-2 py-4 shadow'>
+        <header className='w-full flex flex-col items-center justify-center lg:px-8 px-2 py-4 shadow sticky top-0 '>
             <nav className='flex items-center justify-between w-11/12'>
                 <h1 className='text-2xl'><span className='logo_bend_text text-3xl font-bold'>Fund</span> Fortress</h1>
                 <ul className=' lg:flex hidden items-center justify-between gap-4 font-bold text-sm '>

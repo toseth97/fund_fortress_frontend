@@ -15,7 +15,7 @@ const Carousel = () => {
             <img
                 src={images[currentSlideIndex]}
                 className={currentSlideIndex === 0 ? "fade-in" : "fade-out"}
-                alt={`Image ${currentSlideIndex + 1}`}
+                alt={`${currentSlideIndex + 1}`}
             />
         );
     };
@@ -35,13 +35,17 @@ const Carousel = () => {
         }, 5000);
 
         return () => clearInterval(timer);
+
+        // eslint-disable-next-line
     }, []);
 
     return (
-        <div className="carousel">
+        <div className="carousel text-center">
             {renderImage()}
-            <button onClick={() => changeSlide("prev")}>Prev</button>
-            <button onClick={() => changeSlide("next")}>Next</button>
+            <div className="mt-4">
+                <button onClick={() => changeSlide("prev")} className="opacity-50 mx-1 p-2"><i class='bx bxs-left-arrow' ></i></button>
+                <button onClick={() => changeSlide("next")} className="opacity-50 mx-1 p-2"><i class='bx bxs-right-arrow' ></i></button>
+            </div>
         </div>
     );
 };
