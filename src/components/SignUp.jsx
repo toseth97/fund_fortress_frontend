@@ -10,23 +10,31 @@ const SignUp = () => {
                 <form>
                     <div className='flex flex-col lg:gap:4 gap:2 lg:px-8 px-2 mt-4'>
                         <label className='text-sm' for="firstName">First Name</label>
-                        <input type='text' id='firstName' name='firstName' className='rounded active:shadow focus:shadow px-4 py-2 border outline-none' />
+                        <input required type='text' id='firstName' name='firstName' className='rounded active:shadow focus:shadow px-4 py-2 border outline-none' />
                     </div>
                     <div className='flex flex-col lg:gap:4 gap:2 lg:px-8 px-2 mt-4'>
                         <label className='text-sm' for="lastName">Last Name</label>
-                        <input type='text' id='lastName' name='lastName' className='rounded active:shadow focus:shadow px-4 py-2 border outline-none' />
+                        <input required type='text' id='lastName' name='lastName' className='rounded active:shadow focus:shadow px-4 py-2 border outline-none' />
                     </div>
                     <div className='flex flex-col lg:gap:4 gap:2 lg:px-8 px-2 mt-4'>
                         <label className='text-sm' for="email">Email</label>
-                        <input type='email' id='email' name='email' className='rounded active:shadow focus:shadow px-4 py-2 border outline-none' />
+                        <input required type='email' id='email' name='email' className='rounded active:shadow focus:shadow px-4 py-2 border outline-none' />
                     </div>
                     <div className='flex flex-col lg:gap:4 gap:2 lg:px-8 px-2 mt-4'>
                         <label className='text-sm' for="DOB">Date of Birth</label>
-                        <input type='date' id='DOB' name='DOB' className='rounded active:shadow focus:shadow px-4 py-2 border outline-none' />
+                        <input required type='date' id='DOB' name='DOB' className='rounded active:shadow focus:shadow px-4 py-2 border outline-none' />
                     </div>
                     <div className='flex flex-col lg:gap:4 gap:2 lg:px-8 px-2 mt-4'>
                         <label className='text-sm' for="phoneNo">Phone No</label>
-                        <input type='text' id='phoneNo' name='phone' className='rounded active:shadow focus:shadow px-4 py-2 border outline-none' />
+                        <input required type='text' id='phoneNo' name='phoneNo' className='rounded active:shadow focus:shadow px-4 py-2 border outline-none' />
+                    </div>
+                    <div className='flex flex-col lg:gap:4 gap:2 lg:px-8 px-2 mt-4'>
+                        <label className='text-sm' for="password">Password</label>
+                        <input required type='password' id='password' name='password' className='rounded active:shadow focus:shadow px-4 py-2 border outline-none' />
+                    </div>
+                    <div className='flex flex-col lg:gap:4 gap:2 lg:px-8 px-2 mt-4'>
+                        <label className='text-sm' for="confirm_password">Confirm Password</label>
+                        <input required type='text' id='confirm_password' name='confirm_password' className='rounded active:shadow focus:shadow px-4 py-2 border outline-none' />
                     </div>
                     <div className='flex flex-col lg:gap:4 gap:2 lg:px-8 px-2 mt-4 '>
                         <div className='bg-blue-700 rounded text-white text-center'><button type='submit' className=' px-8 py-2 bg-blue-700 rounded'>Sign Up</button></div>

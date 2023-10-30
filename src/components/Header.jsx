@@ -37,8 +37,8 @@ const Header = () => {
                         <li className='p-2 mx-2 hover:text-blue-700 w-full text-center'><a href='/'>Contact</a></li>
                     </ul>
                     <div className='flex flex-col items-center justify-between gap-2'>
-                        <button className='px-4 py-1 btn-secondary  w-full'><a href='/' className='w-full'>Login</a></button>
-                        <button className='px-4 py-1 btn-primary  w-full '><a href='/' className='w-full'>Sign up</a></button>
+                        <button className='px-4 py-1 btn-secondary  w-full'><a href='/login' className='w-full'>Login</a></button>
+                        <button className='px-4 py-1 btn-primary  w-full '><a href='/signup' className='w-full'>Sign up</a></button>
                     </div>
                 </div> : null
             }
