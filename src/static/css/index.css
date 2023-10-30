@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700&family=Nosifer&display=swap');
+
+
+
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+    --main-bg-color: #011AFF;
+    --main-bg-color-light: #4758ef;
+
+    --logo-text: "'Nosifer', sans-seri";
+
+}
+
+.logo_bend_text {
+    font-family: var(--logo-text);
+    transform: rotate(15deg);
+}
+
+.btn-primary {
+    color: white;
+    background-color: var(--main-bg-color);
+    border: 1px solid var(--main-bg-color);
+    border-radius: 20px;
+    transition: .3s ease-in-out;
+    margin: 0 5px !important;
+
+}
+
+
+.btn-secondary {
+    color: var(--main-bg-color);
+    background-color: white;
+    border: 1px solid var(--main-bg-color);
+    border-radius: 20px;
+    transition: .3s ease-in-out;
+    margin: 0 5px !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--main-bg-color-light);
+
+}
+
+.btn-secondary:hover {
+    background-color: rgb(244, 242, 239);
+}
+
+
+
+.carousel img {
+    transition: transform 0.5s ease-in-out;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.carousel img {
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel img.fade-in {
+    animation: fade 0.5s;
+}
+
+.carousel img.fade-out {
+    animation: fade reverse 0.5s;
+}
