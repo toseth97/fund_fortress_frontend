@@ -10,11 +10,11 @@ const Login = () => {
                 <h1 className='text-blue-700 mb-4 text-center font-bold text-xl mb-4'>Log in to your account</h1>
                 <form>
                     <div className='flex flex-col lg:gap:4 gap:2 lg:px-8 px-2 mt-4'>
-                        <label className='text-sm' for="username">Email</label>
+                        <label className='text-sm' htmlFor="username">Email</label>
                         <input type='text' id='username' name='username' className='rounded active:shadow focus:shadow px-4 py-2 border outline-none' />
                     </div>
                     <div className='flex flex-col lg:gap:4 gap:2 lg:px-8 px-2 mt-4'>
-                        <label className='text-sm' for="password">password</label>
+                        <label className='text-sm' htmlFor="password">password</label>
                         <input type='password' id='password' name='password' className='rounded active:shadow focus:shadow px-4 py-2 border outline-none' />
                     </div>
                     <div className='flex flex-col lg:gap:4 gap:2 lg:px-8 px-2 mt-4 '>

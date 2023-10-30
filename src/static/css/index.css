@@ -90,3 +90,45 @@ section {
     background-color: rgba(255, 255, 255, 0.964);
     backdrop-filter: blur(5px);
 }
+
+
+
+
+.loading {
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    position: relative;
+    animation: rotate .4s linear infinite;
+    border: 3px solid white;
+    border-radius: 50%;
+    border-bottom-color: transparent;
+
+}
+
+.loading-ticket {
+    width: 30px;
+    height: 30px;
+    margin-top: 5%;
+    background-color: var(--main-bg-color) !important;
+    position: relative;
+    animation: rotate 1s linear infinite;
+    animation-delay: .2s;
+    border-radius: 50%;
+    border: 5px solid var(--deep-blue);
+    border-bottom-color: rgb(237, 229, 229);
+}
+
+
+
+
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
