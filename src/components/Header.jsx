@@ -20,7 +20,7 @@ const Header = () => {
                 </ul>
                 <div className='lg:flex hidden items-center justify-between'>
                     <button className='px-4 py-1 btn-secondary my-2'><a href='/' className='w-full'>Login</a></button>
-                    <button className='px-4 py-1 btn-primary my-2'><a href='/' className='w-full'>Sign up</a></button>
+                    <button className='px-4 py-1 btn-primary my-2'><a href='/signup' className='w-full'>Sign up</a></button>
                 </div>
                 <div className='block lg:hidden' onClick={handleIsMobile}>
                     {

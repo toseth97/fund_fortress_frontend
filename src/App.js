@@ -7,6 +7,8 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 // import Carousel from "./components/Carosel";
 import Header from "./components/Header";
 import Home from "./components/Home";
+import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 
 
 function App() {
@@ -17,6 +19,12 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path="/" exact element={<Home />} />
+      </Routes>
+      <Routes>
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
+      <Routes>
+        <Route path="/login" element={<Login />} />
       </Routes>
       </BrowserRouter>
 

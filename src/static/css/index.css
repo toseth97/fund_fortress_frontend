@@ -21,6 +21,10 @@ header {
     z-index: 10;
 }
 
+section {
+    height: calc(100vh - 70px);
+}
+
 .logo_bend_text {
     font-family: var(--logo-text);
     transform: rotate(15deg);
@@ -79,4 +83,10 @@ header {
 
 .carousel img.fade-out {
     animation: fade reverse 0.5s;
+}
+
+/********SignUP ******/
+.glassBackground {
+    background-color: rgba(255, 255, 255, 0.964);
+    backdrop-filter: blur(5px);
 }
