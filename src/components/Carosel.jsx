@@ -43,8 +43,8 @@ const Carousel = () => {
         <div className="carousel text-center">
             {renderImage()}
             <div className="mt-4">
-                <button onClick={() => changeSlide("prev")} className="opacity-50 mx-1 p-2"><i class='bx bxs-left-arrow' ></i></button>
-                <button onClick={() => changeSlide("next")} className="opacity-50 mx-1 p-2"><i class='bx bxs-right-arrow' ></i></button>
+                <button onClick={() => changeSlide("prev")} className="opacity-50 mx-1 p-2"><i className='bx bxs-left-arrow' ></i></button>
+                <button onClick={() => changeSlide("next")} className="opacity-50 mx-1 p-2"><i className='bx bxs-right-arrow' ></i></button>
             </div>
         </div>
     );
