@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import paperPlane from "../static/images/paper_plane-removebg-preview-modified 1.png"
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Cookies from 'universal-cookie'
 
 const Login = () => {
 
-
+    const cookies = new Cookies()
     const navigate = useNavigate()
 
     const [loginState, setLoginState] = useState(true)
@@ -28,8 +29,8 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoginState(false)
-        // const url = "http://localhost:3300/auth_login"
-        const url = "https://i4gfmcb.onrender.com/auth_login"
+        const url = "http://localhost:3300/auth_login"
+        // const url = "https://i4gfmcb.onrender.com/auth_login"
         try {
 
             axios({
@@ -39,6 +40,16 @@ const Login = () => {
             }).then(response => {
                 if (response.status === 200) {
                     setLoginState(true);
+                    const { data } = response
+                    cookies.set("token", { token: data.token })
+                    cookies.set("username", { username: data.email })
+                    cookies.set("fullName", { fullName: data.fullName })
+                    cookies.set("accountBal", { accountBal: data.account.accountBalance })
+                    cookies.set("accountNum", { accountNum: data.account.accountNumber })
+                    cookies.set("accountType", { accountType: data.account.accountType })
+
+
+
                     navigate('/dashboard');
                 } else {
                     setLoginState(true);

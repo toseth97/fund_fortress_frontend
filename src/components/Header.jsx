@@ -11,7 +11,7 @@ const Header = () => {
     return (
         <header className='w-full flex flex-col items-center justify-center lg:px-8 px-2 py-4 shadow sticky top-0 '>
             <nav className='flex items-center justify-between w-11/12'>
-                <h1 className='text-2xl'><span className='logo_bend_text text-3xl font-bold'>Fund</span> Fortress</h1>
+                <h1 className='text-2xl'><a href='/'><span className='logo_bend_text text-3xl font-bold'>Fund</span> Fortress</a></h1>
                 <ul className=' lg:flex hidden items-center justify-between gap-4 font-bold text-sm '>
                     <li className='p-2 mx-2 hover:text-blue-700'><a href='/'>Home</a></li>
                     <li className='p-2 mx-2 hover:text-blue-700'><a href='/'>About</a></li>
