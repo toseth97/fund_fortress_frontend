@@ -27,8 +27,8 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoginState(false)
-        //const url = "http://localhost:5000/signup"
-        const url = "https://i4gfmcb.onrender.com/auth_login"
+        const url = "http://localhost:3300/auth_login"
+        // const url = "https://i4gfmcb.onrender.com/auth_login"
         console.log("2")
         try {
             console.log("1")
