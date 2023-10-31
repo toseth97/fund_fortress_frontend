@@ -3,8 +3,7 @@ import Verify from "../static/images/Vector.png"
 import paperPlane from "../static/images/paper_plane-removebg-preview-modified 1.png"
 
 const Verified = (props) => {
-    const { accountNum } = props
-    console.log(props)
+
     return (
         <section className='w-full bg-blue-700 flex flex-col items-center justify-center relative'>
             <img width={900} src={paperPlane} alt='paperplane' className='absolute' />

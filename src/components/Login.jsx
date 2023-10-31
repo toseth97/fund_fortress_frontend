@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import paperPlane from "../static/images/paper_plane-removebg-preview-modified 1.png"
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Login = () => {
 
@@ -8,7 +9,7 @@ const Login = () => {
     const navigate = useNavigate()
 
     const [loginState, setLoginState] = useState(true)
-    const [signupFormInput, setSignupFormInput] = useState({
+    const [loginFormInput, setLoginFormInput] = useState({
         username: "",
         password: "",
 
@@ -20,47 +21,40 @@ const Login = () => {
 
         const { name, value } = e.target
 
-        setSignupFormInput({ ...signupFormInput, [name]: value })
+        setLoginFormInput({ ...loginFormInput, [name]: value })
     }
 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoginState(false)
-        const url = "http://localhost:3300/auth_login"
-        // const url = "https://i4gfmcb.onrender.com/auth_login"
-        console.log("2")
+        // const url = "http://localhost:3300/auth_login"
+        const url = "https://i4gfmcb.onrender.com/auth_login"
         try {
-            console.log("1")
-            await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
 
-                },
-                body: JSON.stringify(signupFormInput)
-                //credentials: true
-
+            axios({
+                method: 'post',
+                url: url,
+                data: loginFormInput
             }).then(response => {
-                console.log(response)
-                response.json()
-            }).then(data => {
-                console.log("3")
-                setLoginState(true)
-                console.log(data)
-                if (data.error) {
-                    alert(data.error)
+                if (response.status === 200) {
+                    setLoginState(true);
+                    navigate('/dashboard');
+                } else {
+                    setLoginState(true);
+                    window.alert(response.data)
                 }
-                if (data.user) {
-                    navigate("/dashboard")
-                }
-            });
+            }).catch(err => {
 
+                setLoginState(true);
+                window.alert(err.response.data.error)
+
+            })
         } catch (err) {
-
-            window.alert("Error from the server, try again later")
-            setLoginState(true)
-            console.log(err.message)
+            // This block of code will be executed if the try block throws an error.
+            window.alert("Error from the server, try again later");
+            setLoginState(true);
+            console.log(err.message);
         }
     }
     return (
