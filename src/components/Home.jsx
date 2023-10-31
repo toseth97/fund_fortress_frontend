@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Carousel from './Carosel'
 import Typewriter from "typewriter-effect";
+import Cookies from 'universal-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+    const cookies = new Cookies()
+    const navigate = useNavigate()
+    const token = cookies.get("token") && cookies.get("token").token
+
+    useEffect(() => {
+        if (token) {
+            navigate("/dashboard")
+        }
+        //eslint-disable-next-line
+    }, [])
+
 
     return (
         <section className='flex flex-col items-center justify-center w-11/12 lg:py-8 lg:mt-8 py-4'>
