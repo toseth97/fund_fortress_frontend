@@ -10,6 +10,10 @@ import Home from "./components/Home";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import Verified from "./components/Verified";
+import Dashboard from "./components/Dashboard";
+import Transfer from "./components/Transfer";
+import VerifiedSent from "./components/VerifiedSent";
+import Error404 from "./components/Error404";
 import { useState } from "react";
 
 
@@ -28,6 +32,10 @@ function App() {
         <Route path="/signup" element={<SignUp setAccountNum = {setAccountNum} />}  />
         <Route path="/login" element={<Login />} />
         <Route path="/verified" element={<Verified  accountNum={accountNum}/>} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/transfer" element={<Transfer />} />
+        <Route path="/verifySent" element={<VerifiedSent />} />
+        <Route path="*" element={<Error404 />} />
       </Routes>
       </BrowserRouter>
 
