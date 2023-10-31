@@ -10,6 +10,7 @@ const Home = () => {
     const token = cookies.get("token") && cookies.get("token").token
 
     useEffect(() => {
+        window.alert("The login or signup process may be slow. I used a free backend service that sleeps")
         if (token) {
             navigate("/dashboard")
         }
