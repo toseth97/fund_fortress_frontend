@@ -35,13 +35,15 @@ const Dashboard = () => {
     }
 
     const handleLogout = async () => {
+        console.log("text")
         try {
             // const url = "http://localhost:3300/logout"
-            const url = "https://i4gfmcb.onrender.com/auth_login"
+            const url = "https://i4gfmcb.onrender.com/logout"
 
             await axios(url, {
                 method: "post",
             }).then(res => {
+                console.log(res)
                 if (res.status === 200) {
                     cookies.remove("token")
                     cookies.remove("username")
