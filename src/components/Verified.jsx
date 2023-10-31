@@ -1,7 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Verify from "../static/images/Vector.png"
+import Cookies from 'universal-cookie'
+import { useNavigate } from 'react-router-dom'
 
 const Verified = (props) => {
+
+    const cookies = new Cookies()
+    const navigate = useNavigate()
+    const token = cookies.get("token") && cookies.get("token").token
+
+    useEffect(() => {
+        if (token) {
+            navigate("/dashboard")
+        }
+        //eslint-disable-next-line
+    }, [])
 
     return (
         <section className='w-full bg-blue-700 flex flex-col items-center justify-center relative'>

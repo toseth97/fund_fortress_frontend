@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import paperPlane from "../static/images/paper_plane-removebg-preview-modified 1.png"
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -7,7 +7,16 @@ import Cookies from 'universal-cookie'
 const Login = () => {
 
     const cookies = new Cookies()
+
     const navigate = useNavigate()
+    const token = cookies.get("token") && cookies.get("token").token
+
+    useEffect(() => {
+        if (token) {
+            navigate("/dashboard")
+        }
+        //eslint-disable-next-line
+    }, [])
 
     const [loginState, setLoginState] = useState(true)
     const [loginFormInput, setLoginFormInput] = useState({

@@ -1,11 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import paperPlane from "../static/images/paper_plane-removebg-preview-modified 1.png"
 import { useNavigate } from 'react-router-dom'
+import Cookies from 'universal-cookie'
 
 const SignUp = (props) => {
 
     const { setAccountNum } = props
     const navigate = useNavigate()
+    const cookies = new Cookies()
+    const token = cookies.get("token") && cookies.get("token").token
+
+    useEffect(() => {
+        if (token) {
+            navigate("/dashboard")
+        }
+        //eslint-disable-next-line
+    }, [])
 
     const [loginState, setLoginState] = useState(true)
     const [signupFormInput, setSignupFormInput] = useState({
