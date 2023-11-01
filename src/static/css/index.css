@@ -94,7 +94,8 @@ section {
 
 
 
-.loading {
+.loading,
+.loading-bal {
     width: 20px;
     height: 20px;
     background-color: transparent;
@@ -104,6 +105,11 @@ section {
     border-radius: 50%;
     border-bottom-color: transparent;
 
+}
+
+.loading-bal {
+    border: 3px solid blue;
+    border-bottom-color: white;
 }
 
 .loading-ticket {

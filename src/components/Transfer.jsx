@@ -56,7 +56,7 @@ const Transfer = () => {
     }
 
     const handleLogout = async () => {
-
+        setLoginState(false)
         try {
             // const url = "http://localhost:3300/logout"
             const url = "https://i4gfmcb.onrender.com/logout"
@@ -74,11 +74,14 @@ const Transfer = () => {
                     cookies.remove("accountType")
 
                     navigate("/login")
+                    setLoginState(true)
                 }
             }).catch(err => {
+                setLoginState(true)
                 window.alert(err.response.data.error)
             })
         } catch (err) {
+            setLoginState(true)
             window.alert(err.message);
             console.log(err.message);
         }
@@ -177,8 +180,12 @@ const Transfer = () => {
                 <Link onClick={handleLogout}>
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
-                        <i className='bx bx-log-out' ></i>
-                        <p>Logout</p>
+                        {
+                            loginState ? <><i className='bx bx-log-out' ></i>
+                                <p>Logout</p></> : <span className='w-full flex items-center justify-center my-8'>
+                                <div className='loading-bal'></div>
+                            </span>
+                        }
                     </div>
                 </Link>
             </div>
@@ -211,11 +218,16 @@ const Transfer = () => {
                         <p>Loan</p>
                     </div>
                 </Link>
-                <Link>
+                <Link onClick={handleLogout}>
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
-                        <i className='bx bx-log-out' ></i>
-                        <p>Logout</p>
+                        {
+                            loginState ? <><i className='bx bx-log-out' ></i>
+                                <p>Logout</p></> : <span className='w-full flex items-center justify-center my-8'>
+                                <div className='loading-bal'></div>
+                            </span>
+                        }
+
                     </div>
                 </Link>
             </div>

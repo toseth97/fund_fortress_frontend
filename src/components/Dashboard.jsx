@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 import { useNavigate } from 'react-router-dom'
@@ -6,10 +6,41 @@ import axios from 'axios'
 import CardImg from "../static/images/card_img.jpg"
 
 const Dashboard = () => {
-
+    const [loginState, setLoginState] = useState(true)
     const [toggle, setToggle] = useState(false)
     const [showBal, setShowBal] = useState(false)
 
+
+    useEffect(() => {
+        if (cookies.get('token')) {
+            // const url = "http://localhost:3300/update_dashboard"
+            const url = "https://i4gfmcb.onrender.com/update_dashboard"
+            setLoginState(false)
+            try {
+                axios(url, {
+                    method: 'get',
+                    headers: {
+                        Authorization: `Bearer ${cookies.get('token').token}`
+                    }
+                }).then(response => {
+                    if (response.status === 200) {
+                        const { data } = response
+
+                        cookies.set("accountBal", { accountBal: data.message })
+                        setLoginState(true)
+                    }
+                }).catch(err => {
+                    setLoginState(true)
+                    alert(err.response.data.error)
+                })
+            } catch (err) {
+                setLoginState(true)
+                alert(err.message)
+            }
+        }
+
+        //eslint-disable-next-line
+    }, [])
 
     const cookies = new Cookies()
     let navigate = useNavigate();
@@ -35,7 +66,7 @@ const Dashboard = () => {
     }
 
     const handleLogout = async () => {
-
+        setLoginState(false)
         try {
             // const url = "http://localhost:3300/logout"
             const url = "https://i4gfmcb.onrender.com/logout"
@@ -53,11 +84,14 @@ const Dashboard = () => {
                     cookies.remove("accountType")
 
                     navigate("/login")
+                    setLoginState(true)
                 }
             }).catch(err => {
+                setLoginState(true)
                 window.alert(err.response.data.error)
             })
         } catch (err) {
+            setLoginState(true)
             window.alert(err.message);
             console.log(err.message);
         }
@@ -102,8 +136,12 @@ const Dashboard = () => {
                 <Link onClick={handleLogout}>
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
-                        <i className='bx bx-log-out' ></i>
-                        <p>Logout</p>
+                        {
+                            loginState ? <><i className='bx bx-log-out' ></i>
+                                <p>Logout</p></> : <span className='w-full flex items-center justify-center my-8'>
+                                <div className='loading-bal'></div>
+                            </span>
+                        }
                     </div>
                 </Link>
             </div>
@@ -139,12 +177,21 @@ const Dashboard = () => {
                 <Link>
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
-                        <i className='bx bx-log-out' ></i>
-                        <p>Logout</p>
+                        {
+                            loginState ? <><i className='bx bx-log-out' ></i>
+                                <p>Logout</p></> : <span className='w-full flex items-center justify-center my-8'>
+                                <div className='loading-bal'></div>
+                            </span>
+                        }
                     </div>
                 </Link>
             </div>
             <div className='grow-1 p-8 w-full'>
+                {
+                    loginState ? null : <span className='w-full flex items-center justify-center my-8'>
+                        <div className='loading-bal'></div>
+                    </span>
+                }
                 <div className='rounded-lg hover:shadow lg:px-8 px-2 mt-8 py-4 lg:w-4/12 w-full bg-blue-100'>
                     <div className='flex justify-between items-center '>
                         <img src={CardImg} width={60} className='card_img rounded-full' alt='avatar' />
@@ -152,7 +199,7 @@ const Dashboard = () => {
                     </div>
                     <div className='flex justify-between items-center lg:my-8 my-4'>
 
-                        <input className='bg-transparent font-bold outline-none border-none text-xl' type={showBal ? "text" : "password"} value={`NGN ${accountBal}`} readOnly />
+                        <input className='bg-transparent font-bold outline-none border-none text-xl' type={showBal ? "text" : "password"} value={` ${accountBal.toLocaleString('en-US', { style: 'currency', currency: 'NGN', minimumFractionDigits: 2 })}`} readOnly />
                         <div onClick={handleShowBal} className='text-2xl'>
                             {!showBal ? <i className='bx bx-show'></i> : <i className='bx bx-low-vision'></i>}
                         </div>

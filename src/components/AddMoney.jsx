@@ -6,7 +6,7 @@ import axios from 'axios'
 import CardImg from "../static/images/card_img.jpg"
 
 const AddMoney = () => {
-
+    const [loginState, setLoginState] = useState(true)
     const [toggle, setToggle] = useState(false)
     const [showBal, setShowBal] = useState(false)
 
@@ -35,7 +35,7 @@ const AddMoney = () => {
     }
 
     const handleLogout = async () => {
-
+        setLoginState(false)
         try {
             // const url = "http://localhost:3300/logout"
             const url = "https://i4gfmcb.onrender.com/logout"
@@ -43,7 +43,7 @@ const AddMoney = () => {
             await axios(url, {
                 method: "post",
             }).then(res => {
-                console.log(res)
+
                 if (res.status === 200) {
                     cookies.remove("token")
                     cookies.remove("username")
@@ -51,13 +51,14 @@ const AddMoney = () => {
                     cookies.remove("accountBal")
                     cookies.remove("accountNum")
                     cookies.remove("accountType")
-
                     navigate("/login")
                 }
             }).catch(err => {
+                setLoginState(true)
                 window.alert(err.response.data.error)
             })
         } catch (err) {
+            setLoginState(true)
             window.alert(err.message);
             console.log(err.message);
         }
@@ -103,7 +104,11 @@ const AddMoney = () => {
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
                         <i className='bx bx-log-out' ></i>
-                        <p>Logout</p>
+                        <p>{
+                            loginState ? "Logout" : <span className='w-full flex items-center justify-center my-8'>
+                                <div className='loading-bal'></div>
+                            </span>
+                        }</p>
                     </div>
                 </Link>
             </div>
@@ -139,8 +144,12 @@ const AddMoney = () => {
                 <Link>
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
-                        <i className='bx bx-log-out' ></i>
-                        <p>Logout</p>
+                        {
+                            loginState ? <><i className='bx bx-log-out' ></i>
+                                <p>Logout</p></> : <span className='w-full flex items-center justify-center my-8'>
+                                <div className='loading-bal'></div>
+                            </span>
+                        }
                     </div>
                 </Link>
             </div>
