@@ -1,5 +1,16 @@
 module.exports = [
     {
+        "name": "Fund Fortress MFB",
+        "slug": "fund_fortress",
+        "code": "057",
+        "longCode": "057150013",
+        "gateway": "emandate",
+        "active": true,
+        "country": "Nigeria",
+        "currency": "NGN",
+        "type": "nuban"
+    },
+    {
         "name": "Abbey Mortgage Bank",
         "slug": "abbey-mortgage-bank",
         "code": "801",
