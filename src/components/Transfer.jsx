@@ -225,7 +225,7 @@ const Transfer = () => {
                     <form onSubmit={handleSendMoney}>
 
                         <div className='flex flex-col lg:gap:4 gap:2 lg:px-8 px-2 mt-4 '>
-                            <label className='text-sm text-white' htmlFor="account">Account Number</label>
+                            <label className='text-sm text-white' htmlFor="account">Bank Name</label>
                             <select className='rounded active:shadow focus:shadow px-4 py-2 border outline-none' name='bank' id='bank'>
                                 {
                                     Banks.map(item => <option value={item.name} name="bank" key={item.name} >{item.name}</option>
