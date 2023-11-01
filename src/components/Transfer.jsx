@@ -24,7 +24,7 @@ const Transfer = () => {
 
     const getAccountName = async (e) => {
         e.preventDefault()
-        setLoginState(true)
+        setLoginState(false)
         // const url = "http://localhost:3300/getAccount"
         const url = "https://i4gfmcb.onrender.com/getAccount"
         try {
@@ -55,12 +55,41 @@ const Transfer = () => {
         }
     }
 
+    const handleLogout = async () => {
+
+        try {
+            // const url = "http://localhost:3300/logout"
+            const url = "https://i4gfmcb.onrender.com/logout"
+
+            await axios(url, {
+                method: "post",
+            }).then(res => {
+                console.log(res)
+                if (res.status === 200) {
+                    cookies.remove("token")
+                    cookies.remove("username")
+                    cookies.remove("fullName")
+                    cookies.remove("accountBal")
+                    cookies.remove("accountNum")
+                    cookies.remove("accountType")
+
+                    navigate("/login")
+                }
+            }).catch(err => {
+                window.alert(err.response.data.error)
+            })
+        } catch (err) {
+            window.alert(err.message);
+            console.log(err.message);
+        }
+    }
+
     const handleSendMoney = async (e) => {
         try {
             e.preventDefault()
             setLoginState(false)
             // const url = "http://localhost:3300/send_money"
-            const url = "https://i4gfmcb.onrender.com/getAccount"
+            const url = "https://i4gfmcb.onrender.com/send_money"
 
             await axios(url, {
                 method: "post",
@@ -145,7 +174,7 @@ const Transfer = () => {
                         <p>Loan</p>
                     </div>
                 </Link>
-                <Link>
+                <Link onClick={handleLogout}>
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
                         <i className='bx bx-log-out' ></i>
@@ -209,16 +238,7 @@ const Transfer = () => {
                             <label className='text-sm text-white' htmlFor="account">Account Number</label>
                             <input type='number' id='account' name='account' className='rounded active:shadow focus:shadow px-4 py-2 border outline-none' onChange={handleInputChange} />
                         </div>
-                        {
 
-                            !accountName ? <div className='flex flex-col lg:gap:4 gap:2 lg:px-8 px-2 mt-4 ' onClick={getAccountName}>
-                                <div className='mt-4 text-center text-white bg-black rounded py-2'>{loginState ? "Confirm Account Name" :
-                                    <span span className='w-full flex items-center justify-center'>
-                                        <div className='loading'></div>
-                                    </span>
-                                }</div></div> : null
-
-                        }
                         {
 
                             accountName ?
@@ -238,19 +258,27 @@ const Transfer = () => {
                                     <label className='text-sm text-white' htmlFor="description">Description</label>
                                     <input type='text' id='description' name='description' className='rounded active:shadow focus:shadow px-4 py-2 border outline-none' onChange={handleInputChange} />
                                 </div>
-                                {
-                                    accountName ? <div className='flex flex-col lg:gap:4 gap:2 lg:px-8 px-2 mt-4 '>
-                                        <button className='mt-4 text-center text-white bg-black rounded py-2' type='submit'>{loginState ? "Send Money" :
-                                            <span span className='w-full flex items-center justify-center'>
-                                                <div className='loading'></div>
-                                            </span>
-                                        }</button></div> : null
-                                }
+                                <div className='flex flex-col lg:gap:4 gap:2 lg:px-8 px-2 mt-4 ' onClick={handleSendMoney}>
+                                    <button className='mt-4 text-center text-white bg-black rounded py-2' type='submit'>{loginState ? "Send Money" :
+                                        <span span className='w-full flex items-center justify-center'>
+                                            <div className='loading'></div>
+                                        </span>
+                                    }</button></div>
+
                             </> : null
                         }
 
                     </form>
+                    {
 
+                        !accountName ? <div className='flex flex-col lg:gap:4 gap:2 lg:px-8 px-2 mt-4 ' onClick={getAccountName}>
+                            <div className='mt-4 text-center text-white bg-black rounded py-2'>{loginState ? "Confirm Account Name" :
+                                <span span className='w-full flex items-center justify-center'>
+                                    <div className='loading'></div>
+                                </span>
+                            }</div></div> : null
+
+                    }
                 </div>
             </div >
         </section >

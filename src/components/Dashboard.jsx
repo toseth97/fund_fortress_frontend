@@ -197,7 +197,7 @@ const Dashboard = () => {
                         </div>
                     </Link>
                 </div>
-                <div className='flex flex-col overflow-x-scroll mt-8'>
+                <div className='flex flex-col overflow-x-scroll lg:overflow-x-none mt-8'>
                     <h1 className='text-xl'>Transactions</h1>
 
                 </div>
