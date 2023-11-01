@@ -35,7 +35,7 @@ const Dashboard = () => {
     }
 
     const handleLogout = async () => {
-        console.log("text")
+
         try {
             // const url = "http://localhost:3300/logout"
             const url = "https://i4gfmcb.onrender.com/logout"
