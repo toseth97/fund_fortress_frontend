@@ -71,7 +71,7 @@ const Dashboard = () => {
                 {toggle ? <i className='bx bxs-chevrons-left'></i> : <i className='bx bxs-chevrons-right'></i>}
             </div>
             <div className={`lg:hidden ${toggle ? "flex" : "hidden"} flex-col bg-white border-r grow-0 py-8`}>
-                <Link>
+                <Link to="/dashboard">
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
                         <i className='bx bx-home'></i>
@@ -145,12 +145,12 @@ const Dashboard = () => {
                 </Link>
             </div>
             <div className='grow-1 p-8 w-full'>
-                <div className='rounded-lg hover:shadow px-8 mt-8 py-4 lg:w-4/12 w-full bg-blue-100'>
+                <div className='rounded-lg hover:shadow lg:px-8 px-2 mt-8 py-4 lg:w-4/12 w-full bg-blue-100'>
                     <div className='flex justify-between items-center '>
                         <img src={CardImg} width={60} className='card_img rounded-full' alt='avatar' />
-                        <h1 className='font-bold text-xl'>FundFortress</h1>
+                        <h1 className='font-bold lg:text-xl text-x'>FundFortress</h1>
                     </div>
-                    <div className='flex justify-between items-center my-8'>
+                    <div className='flex justify-between items-center lg:my-8 my-4'>
 
                         <input className='bg-transparent font-bold outline-none border-none text-xl' type={showBal ? "text" : "password"} value={`NGN ${accountBal}`} readOnly />
                         <div onClick={handleShowBal} className='text-2xl'>
@@ -158,27 +158,40 @@ const Dashboard = () => {
                         </div>
 
                     </div>
-                    <div className='flex justify-between font-bold text-sm items-center'>
-                        <p>Account Name</p>
-                        <p>Account Number</p>
+                    <div className='flex justify-between text-sm items-center w-full'>
+                        <table className='table-auto text-center w-full'>
+                            <thead>
+                                <tr>
+                                    <th>Account Name</th>
+                                    <th>Account Number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{fullName}</td>
+                                    <td>{accountNum}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
                     </div>
                     <div className='flex justify-between text-sm items-center'>
-                        <p>{fullName}</p>
-                        <p>{accountNum}</p>
+                        <p></p>
+                        <p></p>
                     </div>
 
 
                 </div>
 
-                <div className='flex lg:w-4/12 w-full items-center justify-between text-white mt-8'>
-                    <Link to="/transfer">
-                        <div className='flex text-sm hover:bg-blue-800 items-center gap-6 bg-blue-700 lg:px-8 px-3 py-2 rounded'>
+                <div className='flex lg:w-4/12 w-full lg:flex-row flex-col items-center gap-4 justify-between text-white mt-8'>
+                    <Link to="/transfer" className='w-full'>
+                        <div className='flex w-full text-sm hover:bg-blue-800 items-center gap-6 bg-blue-700 lg:px-8 px-3 py-2 rounded'>
                             <i className='bx bx-transfer  bg-white text-black lg:p-2 p-1 rounded-full' ></i>
-                            <p>Transfer Funds</p>
+                            <p className=''>Transfer Funds</p>
                         </div>
                     </Link>
-                    <Link to="add_money">
-                        <div className='flex text-sm hover:bg-blue-800 items-center gap-6 bg-blue-700 lg:px-8 px-3 py-2 rounded'>
+                    <Link to="/add_money" className='w-full'>
+                        <div className='flex text-sm w-full hover:bg-blue-800 items-center gap-6 bg-blue-700 lg:px-8 px-3 py-2 rounded'>
                             <i className='bx bx-plus bg-white text-black lg:p-2 p-1 rounded-full' ></i>
                             <p>Add Money</p>
                         </div>

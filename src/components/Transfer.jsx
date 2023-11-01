@@ -117,7 +117,7 @@ const Transfer = () => {
                 {toggle ? <i className='bx bxs-chevrons-left'></i> : <i className='bx bxs-chevrons-right'></i>}
             </div>
             <div className={`lg:hidden ${toggle ? "flex" : "hidden"} flex-col bg-white border-r grow-0 py-8`}>
-                <Link>
+                <Link to="/dashboard">
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
                         <i className='bx bx-home'></i>

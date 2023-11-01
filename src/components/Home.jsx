@@ -19,7 +19,7 @@ const Home = () => {
 
 
     return (
-        <section className='flex flex-col items-center justify-center w-11/12 lg:py-8 lg:mt-8 py-4'>
+        <section className='flex flex-col items-center justify-center w-11/12 lg:py-8 mt-8 py-4'>
             <div className='flex lg:flex-row flex-col w-11/12 items-start justify-between gap-6'>
                 <div>
                     <h1 className='lg:text-6xl text-4xl font-bold'>
