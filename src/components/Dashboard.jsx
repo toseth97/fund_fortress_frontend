@@ -74,7 +74,7 @@ const Dashboard = () => {
             await axios(url, {
                 method: "post",
             }).then(res => {
-                console.log(res)
+
                 if (res.status === 200) {
                     cookies.remove("token")
                     cookies.remove("username")
