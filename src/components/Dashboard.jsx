@@ -185,13 +185,13 @@ const Dashboard = () => {
 
                 <div className='flex lg:w-4/12 w-full lg:flex-row flex-col items-center gap-4 justify-between text-white mt-8'>
                     <Link to="/transfer" className='w-full'>
-                        <div className='flex w-full text-sm hover:bg-blue-800 items-center gap-6 bg-blue-700 lg:px-8 px-3 py-2 rounded'>
+                        <div className='flex w-full text-sm hover:bg-blue-800 items-center gap-6 bg-blue-700 lg:px-4 px-3 py-2 rounded'>
                             <i className='bx bx-transfer  bg-white text-black lg:p-2 p-1 rounded-full' ></i>
                             <p className=''>Transfer Funds</p>
                         </div>
                     </Link>
                     <Link to="/add_money" className='w-full'>
-                        <div className='flex text-sm w-full hover:bg-blue-800 items-center gap-6 bg-blue-700 lg:px-8 px-3 py-2 rounded'>
+                        <div className='flex text-sm w-full hover:bg-blue-800 items-center lg:gap-1 gap-6 bg-blue-700 lg:px-4 px-3 py-2 rounded'>
                             <i className='bx bx-plus bg-white text-black lg:p-2 p-1 rounded-full' ></i>
                             <p>Add Money</p>
                         </div>
