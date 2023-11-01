@@ -15,6 +15,7 @@ import Transfer from "./components/Transfer";
 import VerifiedSent from "./components/VerifiedSent";
 import Error404 from "./components/Error404";
 import AddMoney from "./components/AddMoney";
+import Card from "./components/Card";
 import { useState } from "react";
 
 
@@ -37,6 +38,7 @@ function App() {
         <Route path="/transfer" element={<Transfer />} />
         <Route path="/verifySent" element={<VerifiedSent />} />
         <Route path="/add_money" element={<AddMoney />} />
+        <Route path="/virtual_card" element={<Card />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
       </BrowserRouter>

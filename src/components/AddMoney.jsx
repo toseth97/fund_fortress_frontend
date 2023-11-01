@@ -79,27 +79,27 @@ const AddMoney = () => {
                         <p>Home</p>
                     </div>
                 </Link>
-                <Link>
+                <Link to="/virtual_card">
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
                         <i className='bx bx-credit-card' ></i>
                         <p>Cards</p>
                     </div>
                 </Link>
-                <Link>
+                {/* {<Link to="/manage">
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
                         <i className='bx bx-briefcase' ></i>
                         <p>Manage</p>
                     </div>
                 </Link>
-                <Link>
+                <Link to="/loan">
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
                         <i className='bx bx-dollar-circle' ></i>
                         <p>Loan</p>
                     </div>
-                </Link>
+                </Link>} */}
                 <Link onClick={handleLogout}>
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
@@ -113,34 +113,34 @@ const AddMoney = () => {
                 </Link>
             </div>
             <div className=' lg:flex hidden flex-col border-r grow-0 bg-white py-8'>
-                <Link>
+                <Link to="/dashboard">
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
                         <i className='bx bx-home'></i>
                         <p>Home</p>
                     </div>
                 </Link>
-                <Link>
+                <Link to="/virtual_card">
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
                         <i className='bx bx-credit-card' ></i>
                         <p>Cards</p>
                     </div>
                 </Link>
-                <Link>
+                {/* {<Link to="/manage">
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
                         <i className='bx bx-briefcase' ></i>
                         <p>Manage</p>
                     </div>
                 </Link>
-                <Link>
+                <Link to="/loan">
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
                         <i className='bx bx-dollar-circle' ></i>
                         <p>Loan</p>
                     </div>
-                </Link>
+                </Link>} */}
                 <Link>
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
