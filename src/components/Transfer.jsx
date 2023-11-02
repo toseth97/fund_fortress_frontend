@@ -11,6 +11,7 @@ const Transfer = () => {
     const navigate = useNavigate();
     const [accountName, setAccountName] = useState("")
     const [loginState, setLoginState] = useState(true)
+    const [logoutState, setLogoutState] = useState(true)
     const token = cookies.get("token") && cookies.get("token").token
 
     const [toggle, setToggle] = useState(false)
@@ -56,7 +57,7 @@ const Transfer = () => {
     }
 
     const handleLogout = async () => {
-        setLoginState(false)
+        setLogoutState(false)
         try {
             // const url = "http://localhost:3300/logout"
             const url = "https://i4gfmcb.onrender.com/logout"
@@ -74,14 +75,14 @@ const Transfer = () => {
                     cookies.remove("accountType")
 
                     navigate("/login")
-                    setLoginState(true)
+                    setLogoutState(true)
                 }
             }).catch(err => {
-                setLoginState(true)
+                setLogoutState(true)
                 window.alert(err.response.data.error)
             })
         } catch (err) {
-            setLoginState(true)
+            setLogoutState(true)
             window.alert(err.message);
             console.log(err.message);
         }
@@ -181,7 +182,7 @@ const Transfer = () => {
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
                         {
-                            loginState ? <><i className='bx bx-log-out' ></i>
+                            logoutState ? <><i className='bx bx-log-out' ></i>
                                 <p>Logout</p></> : <span className='w-full flex items-center justify-center my-8'>
                                 <div className='loading-bal'></div>
                             </span>
@@ -222,7 +223,7 @@ const Transfer = () => {
 
                     <div className='flex gap-2 items-center px-8 py-2 my-4 '>
                         {
-                            loginState ? <><i className='bx bx-log-out' ></i>
+                            logoutState ? <><i className='bx bx-log-out' ></i>
                                 <p>Logout</p></> : <span className='w-full flex items-center justify-center my-8'>
                                 <div className='loading-bal'></div>
                             </span>
