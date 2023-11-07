@@ -15,8 +15,8 @@ const Dashboard = () => {
 
     useEffect(() => {
         if (cookies.get('token')) {
-            // const url = "http://localhost:3300/update_dashboard"
-            const url = "https://i4gfmcb.onrender.com/update_dashboard"
+            const url = "http://localhost:3300/update_dashboard"
+            // const url = "https://i4gfmcb.onrender.com/update_dashboard"
             setLoginState(false)
             try {
                 axios(url, {
@@ -72,8 +72,8 @@ const Dashboard = () => {
     const handleLogout = async () => {
         setLogoutState(false)
         try {
-            // const url = "http://localhost:3300/logout"
-            const url = "https://i4gfmcb.onrender.com/logout"
+            const url = "http://localhost:3300/logout"
+            // const url = "https://i4gfmcb.onrender.com/logout"
 
             await axios(url, {
                 method: "post",

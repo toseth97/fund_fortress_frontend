@@ -26,8 +26,8 @@ const Transfer = () => {
     const getAccountName = async (e) => {
         e.preventDefault()
         setLoginState(false)
-        // const url = "http://localhost:3300/getAccount"
-        const url = "https://i4gfmcb.onrender.com/getAccount"
+        const url = "http://localhost:3300/getAccount"
+        // const url = "https://i4gfmcb.onrender.com/getAccount"
         try {
 
 
@@ -59,8 +59,8 @@ const Transfer = () => {
     const handleLogout = async () => {
         setLogoutState(false)
         try {
-            // const url = "http://localhost:3300/logout"
-            const url = "https://i4gfmcb.onrender.com/logout"
+            const url = "http://localhost:3300/logout"
+            // const url = "https://i4gfmcb.onrender.com/logout"
 
             await axios(url, {
                 method: "post",
@@ -92,8 +92,8 @@ const Transfer = () => {
         try {
             e.preventDefault()
             setLoginState(false)
-            // const url = "http://localhost:3300/send_money"
-            const url = "https://i4gfmcb.onrender.com/send_money"
+            const url = "http://localhost:3300/send_money"
+            // const url = "https://i4gfmcb.onrender.com/send_money"
 
             await axios(url, {
                 method: "post",

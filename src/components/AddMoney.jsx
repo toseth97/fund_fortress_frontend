@@ -1,21 +1,56 @@
-import React, { useState } from 'react'
+import React, { useReducer, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Cookies from 'universal-cookie'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import CardImg from "../static/images/card_img.jpg"
+import CardImg from "../static/images/emv_chip-removebg-preview (1).png"
 
 const AddMoney = () => {
     const [loginState, setLoginState] = useState(true)
     const [toggle, setToggle] = useState(false)
     const [showBal, setShowBal] = useState(false)
 
+    const CARDNUMBER = "CARDNUMBER"
+    const CARDPIN = "CARDPIN"
+    const CARDMONTH = "CARDMONTH"
+    const CARDYEAR = "CARDYEAR"
+    const CARDCVV = "CARDCVV"
+
+    const reducer = (state, action) => {
+        switch (action.type) {
+            case CARDNUMBER:
+                return { ...state, cardnumber: action.payload }
+            case CARDPIN:
+                return { ...state, pin: action.payload }
+            case CARDMONTH:
+                return { ...state, month: action.payload }
+            case CARDYEAR:
+                return { ...state, year: action.payload }
+            case CARDCVV:
+                return { ...state, cvv: action.payload }
+            default:
+                throw new Error('Invalid Action Type');
+        }
+
+    }
+
+    const [state, dispatch] = useReducer(reducer, {
+        cardnumber: "",
+        cardmonth: "",
+        cardyear: "",
+        cvv: "",
+        pin: ""
+    })
 
     const cookies = new Cookies()
     let navigate = useNavigate();
-    if (cookies.get('token') === undefined) {
-        return <Link to="/login" onClick={navigate} className='bg-blue-700 px-8 py-2 rounded mt-8 text-white'><h1>You need login</h1></Link>;
-    }
+
+
+
+
+
+
+
 
 
 
@@ -62,6 +97,34 @@ const AddMoney = () => {
             window.alert(err.message);
             console.log(err.message);
         }
+    }
+
+
+    const handleChange = (event, type) => {
+
+        const action = {
+            type: type,
+            payload: event.target.value,
+        };
+
+        console.log(state.cardnumber.length)
+
+
+
+
+
+        if (type === CARDNUMBER) {
+            if (state.cardnumber.length < 18) {
+                dispatch(action)
+            }
+        } else {
+            dispatch(action)
+        }
+
+    }
+
+    if (cookies.get('token') === undefined) {
+        return <Link to="/login" onClick={navigate} className='bg-blue-700 px-8 py-2 rounded mt-8 text-white'><h1>You need login</h1></Link>;
     }
 
 
@@ -154,7 +217,51 @@ const AddMoney = () => {
                 </Link>
             </div>
             <div className='grow-1 p-8 w-full'>
+                <div className='rounded-lg hover:shadow lg:px-8 px-2 mt-8 py-4 lg:w-3/12 w-full bg-blue-100'>
 
+                    <div className='flex justify-between items-center '>
+                        <img src={CardImg} width={60} className='card_img rounded-full' alt='avatar' />
+                        <p>Debit Card</p>
+                    </div>
+                    <p className='px-8 py-1 mt-4 h-10'>{state.cardnumber}</p>
+                    <div className='flex justify-between text-sm items-center w-full'>
+
+                        <p className='text-sm'>Expiry Date : {state.cardmonth} / {state.cardyear}</p>
+                        <img src="" width={40} className='card_img rounded-full' alt='avatar' />
+
+                    </div>
+                </div>
+
+                <div className='rounded-lg hover:shadow px-2 mt-8 py-4 lg:w-3/12 w-full bg-blue-700'>
+                    <h1 className='text-white text-center text-xl font-bold my-4'>Add Funds</h1>
+
+
+                    <form >
+
+                        <div className='flex flex-col lg:gap:4 gap:2  px-2 mt-4 '>
+                            <label className='text-sm text-white' htmlFor="cardNumber">cardNumber</label>
+                            <input id="cardNumber" type='number' className='rounded active:shadow focus:shadow px-4 py-1 border outline-none' required maxLength="16" pattern="[0-9]{2} \/ [0-9]{2}" onChange={(event) => handleChange(event, CARDNUMBER)} value={state.cardnumber} />
+                        </div>
+
+                        <div className='flex flex-col lg:gap:4 gap:2  px-2 mt-4 '>
+                            <label className='text-sm text-white' htmlFor="account">Expiry Date</label>
+                            <div className='flex gap-8'>
+                                <input type="text" id="debit-card-expiry-date-month" placeholder="MM" maxLenght="2" pattern="[0-9]{2} \/ [0-9]{2}" className='rounded w-full active:shadow focus:shadow px-4 py-1 border outline-none' required min="1" max="12" name='exp-month' onChange={(event) => handleChange(event, CARDMONTH)} value={state.cardmonth} />
+                                <input type="text" id="debit-card-expiry-date-year" placeholder="YY" maxLenght="2" pattern="[0-9]{2} \/ [0-9]{2}" className='rounded w-full active:shadow focus:shadow px-4 py-1 border outline-none' required name='exp-year' onChange={(event) => handleChange(event, CARDYEAR)} value={state.cardyear} />
+                                <input type="text" id="debit-card-cvv" placeholder="CVV" maxLenght="3" pattern="[0-9]{2} \/ [0-9]{2}" className='rounded w-full active:shadow focus:shadow px-4 py-1 border outline-none' required name='cvv' onChange={(event) => handleChange(event, CARDCVV)} value={state.cvv} />
+                            </div>
+
+                        </div>
+                        <div className='flex flex-col lg:gap:4 gap:2  px-2 mt-4 '>
+                            <label className='text-sm text-white' htmlFor="cardPin">PIN</label>
+                            <input id="cardPin" type='password' className='rounded active:shadow focus:shadow px-4 py-1 border outline-none' required maxLenght="4" pattern="[0-9]{2}" onChange={(event) => handleChange(event, CARDPIN)} value={state.pin} />
+                        </div>
+
+
+
+                    </form>
+
+                </div>
             </div>
         </section>
     )

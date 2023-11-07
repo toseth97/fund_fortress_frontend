@@ -27,6 +27,20 @@ section {
     min-height: calc(100vh - 70px);
 }
 
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+    /* Firefox */
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    display: none;
+}
+
+#cardPin {}
+
+
 .logo_bend_text {
     font-family: var(--logo-text);
     transform: rotate(15deg);
