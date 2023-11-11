@@ -23,9 +23,9 @@ const AddMoney = () => {
             case CARDPIN:
                 return { ...state, pin: action.payload }
             case CARDMONTH:
-                return { ...state, month: action.payload }
+                return { ...state, cardmonth: action.payload }
             case CARDYEAR:
-                return { ...state, year: action.payload }
+                return { ...state, cardyear: action.payload }
             case CARDCVV:
                 return { ...state, cvv: action.payload }
             default:
@@ -107,9 +107,6 @@ const AddMoney = () => {
             payload: event.target.value,
         };
 
-        console.log(state.cardnumber.length)
-
-
 
 
 
@@ -117,9 +114,30 @@ const AddMoney = () => {
             if (state.cardnumber.length < 18) {
                 dispatch(action)
             }
-        } else {
-            dispatch(action)
+        } else if (type === CARDPIN) {
+            if (typeof (event.target.value) === Number) {
+                dispatch(action)
+            }
+        } else if (type === CARDYEAR) {
+            if ((Number(event.target.value) || event.target.value === "")) {
+                if ((Number(event.target.value) || event.target.value === "")) {
+                    dispatch(action)
+                } else if (state.cardyear.length === 2) {
+                    return null
+                }
+            }
+        } else if (type === CARDMONTH) {
+            if ((Number(event.target.value) || event.key === "Backspace") && state.cardmonth.length < 2) {
+                dispatch(action)
+            }
         }
+        else if (type === CARDCVV) {
+            if ((Number(event.target.value) || event.key === "Backspace") && state.cvv.length < 3) {
+                dispatch(action)
+            }
+        }
+
+
 
     }
 
