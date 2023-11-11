@@ -15,8 +15,8 @@ const Dashboard = () => {
 
     useEffect(() => {
         if (cookies.get('token')) {
-            const url = "http://localhost:3300/update_dashboard"
-            // const url = "https://i4gfmcb.onrender.com/update_dashboard"
+            // const url = "http://localhost:3300/update_dashboard"
+            const url = "https://i4gfmcb.onrender.com/update_dashboard"
             setLoginState(false)
             try {
                 axios(url, {
@@ -72,8 +72,8 @@ const Dashboard = () => {
     const handleLogout = async () => {
         setLogoutState(false)
         try {
-            const url = "http://localhost:3300/logout"
-            // const url = "https://i4gfmcb.onrender.com/logout"
+            // const url = "http://localhost:3300/logout"
+            const url = "https://i4gfmcb.onrender.com/logout"
 
             await axios(url, {
                 method: "post",
@@ -238,7 +238,7 @@ const Dashboard = () => {
                     <Link to="/transfer" className='w-full'>
                         <div className='flex w-full text-sm hover:bg-blue-800 items-center gap-6 bg-blue-700 lg:px-4 px-3 py-2 rounded'>
                             <i className='bx bx-transfer  bg-white text-black lg:p-2 p-1 rounded-full' ></i>
-                            <p className=''>Transfer Funds</p>
+                            <p className=''>Send Funds</p>
                         </div>
                     </Link>
                     <Link to="/add_money" className='w-full'>

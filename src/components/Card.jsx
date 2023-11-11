@@ -39,8 +39,8 @@ const Card = () => {
     const handleLogout = async () => {
         setLoginState(false)
         try {
-            // const url = "http://localhost:3300/logout"
-            const url = "https://i4gfmcb.onrender.com/logout"
+            const url = "http://localhost:3300/logout"
+            // const url = "https://i4gfmcb.onrender.com/logout"
 
             await axios(url, {
                 method: "post",
@@ -156,7 +156,7 @@ const Card = () => {
                 </Link>
             </div>
             <div className='grow-1 p-8 w-full'>
-                <div className='rounded-lg hover:shadow lg:px-8 px-2 mt-8 py-4 lg:w-3/12 w-full bg-blue-100'>
+                <div className='rounded-lg hover:shadow lg:px-8 px-2 mt-8 py-4 lg:w-4/12 w-full bg-blue-100'>
                     <h1 className='font-bold lg:text-xl text-x my-2'>FundFortress</h1>
                     <div className='flex justify-between items-center '>
                         <img src={CardImg} width={60} className='card_img rounded-full' alt='avatar' />
@@ -173,7 +173,7 @@ const Card = () => {
 
 
                 </div>
-                <div className='rounded-lg hover:shadow lg:px-8 px-2 mt-8 py-4 lg:w-3/12 w-full bg-black text-white'>
+                <div className='rounded-lg hover:shadow lg:px-8 px-2 mt-8 py-4 lg:w-4/12 w-full bg-black text-white'>
                     <h1 className='font-bold lg:text-xl text-x my-2'>FundFortress</h1>
                     <div className='flex justify-between items-center '>
                         <img src={CardImg} width={60} className='card_img rounded-full' alt='avatar' />
