@@ -218,8 +218,8 @@ const AddMoney = () => {
         event.preventDefault()
         setLoadOTP(false)
         verifyCardDetails()
-        // const url = "http://localhost:3300/sendotp"
-        const url = "https://i4gfmcb.onrender.com/sendotp"
+        // const url = "http://localhost:3300/add_money"
+        const url = "https://i4gfmcb.onrender.com/add_money"
         try {
 
 
