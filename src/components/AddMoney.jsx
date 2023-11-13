@@ -19,7 +19,7 @@ const AddMoney = () => {
     const CARDMONTH = "CARDMONTH"
     const CARDYEAR = "CARDYEAR"
     const CARDCVV = "CARDCVV"
-    const AMOUNT = "CAMOUNT"
+    const AMOUNT = "AMOUNT"
 
     const reducer = (state, action) => {
         switch (action.type) {
@@ -228,7 +228,7 @@ const AddMoney = () => {
                 headers: {
                     Authorization: `Bearer ${token}`
                 },
-                body: JSON.stringify()
+                body: JSON.stringify(state)
             }).then(response => {
                 if (response.status === 200) {
                     setLoadOTP(true)
