@@ -11,7 +11,6 @@ const AddMoney = () => {
     const [loginState, setLoginState] = useState(true)
     const [loadOTP, setLoadOTP] = useState(true)
     const [toggle, setToggle] = useState(false)
-    const [showBal, setShowBal] = useState(false)
     const [getOTP, setOtp] = useState("")
     const [confirmOTP, setConfirmOTP] = useState(false)
 
@@ -57,6 +56,7 @@ const AddMoney = () => {
             return
         }
     }
+    const cookies = new Cookies()
 
     const [state, dispatch] = useReducer(reducer, {
         cardnumber: "",
@@ -64,17 +64,12 @@ const AddMoney = () => {
         cardyear: "",
         cvv: "",
         pin: "",
-        amount: ""
+        amount: "",
+        accountNumber: cookies.get("accountNum").accountNum
     })
 
-    const cookies = new Cookies()
     let navigate = useNavigate();
 
-
-
-    const fullName = cookies.get("fullName") && cookies.get("fullName").fullName
-    const accountBal = cookies.get("accountBal") && cookies.get("accountBal").accountBal
-    const accountNum = cookies.get("accountNum") && cookies.get("accountNum").accountNum
     const token = cookies.get("token") && cookies.get("token").token
 
 
@@ -83,9 +78,7 @@ const AddMoney = () => {
         setToggle(prev => !prev)
     }
 
-    const handleShowBal = () => {
-        setShowBal(prev => !prev)
-    }
+
     const getOtp = async () => {
         // const url = "http://localhost:3300/sendotp"
         const url = "https://i4gfmcb.onrender.com/sendotp"
@@ -102,6 +95,7 @@ const AddMoney = () => {
                 setConfirmOTP(true)
                 if (res.status === 200) {
                     setConfirmOTP(true)
+                    setLoadOTP(true)
                 }
             }).catch(err => {
                 setLoadOTP(true)
@@ -220,10 +214,40 @@ const AddMoney = () => {
         }
     }
 
-    const handleFormSubmit = (event) => {
+    const handleFormSubmit = async (event) => {
         event.preventDefault()
+        setLoadOTP(false)
         verifyCardDetails()
+        // const url = "http://localhost:3300/sendotp"
+        const url = "https://i4gfmcb.onrender.com/sendotp"
+        try {
+
+
+            await axios(url, {
+                method: "get",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify()
+            }).then(response => {
+                if (response.status === 200) {
+                    setLoadOTP(true)
+                    navigate("/verifiedAdd")
+                }
+            }).catch(err => {
+                setLoadOTP(true)
+                window.alert(err.response.data.error)
+            })
+
+
+        } catch (err) {
+            setLoadOTP(true)
+            alert(err.message)
+            console.log(err.message)
+        }
     }
+
+    const accountNumber = cookies.get("accountNum").accountNum
 
 
 
@@ -349,8 +373,9 @@ const AddMoney = () => {
                     <form className='text-blue-500' onSubmit={handleFormSubmit}>
                         <div className='flex flex-col lg:gap:4 gap:2  px-2 mt-4 '>
                             <label className='text-sm text-white' htmlFor="amount">Amount</label>
-                            <input id="amount" type='number' className='rounded active:shadow focus:shadow px-4 py-1 border outline-none' required onChange={(event) => handleAmountChange(event, AMOUNT)} value={state.amount} />
+                            <input id="amount" type='number' className='rounded active:shadow focus:shadow px-4 py-1 border outline-none' required onChange={(event) => handleAmountChange(event, AMOUNT)} value={state.amount} name='amount' />
                         </div>
+                        <input type='hidden' value={accountNumber} />
 
                         <div className='flex flex-col lg:gap:4 gap:2  px-2 mt-4 '>
                             <label className='text-sm text-white' htmlFor="cardNumber">cardNumber</label>
@@ -373,13 +398,17 @@ const AddMoney = () => {
                         {
                             confirmOTP ? <div className='flex flex-col lg:gap:4 gap:2  px-2 mt-4 '>
                                 <label className='text-sm text-white' htmlFor="otp">OTP</label>
-                                <input id="otp" type='text' className='rounded active:shadow focus:shadow px-4 py-1 border outline-none' required maxLength="6" onChange={handleOTP} value={getOTP} />
+                                <input id="otp" type='text' className='rounded active:shadow focus:shadow px-4 py-1 border outline-none' required maxLength="6" onChange={handleOTP} value={getOTP} name='myOtp' />
                             </div> : null
                         }
 
                         {
                             confirmOTP ? <div className='flex flex-col lg:gap:4 gap:2  px-2 mt-4 '>
-                                <button className='w-full bg-white hover:bg-slate-200 text-center py-1 rounded text-blue-500'>Continue</button>
+                                <button className='w-full hover:bg-slate-200 bg-slate-300 text-center py-1 rounded text-blue-500'>{
+                                    loadOTP ? "Continue" : <span className='w-full flex items-center justify-center'>
+                                        <div className='loading'></div>
+                                    </span>
+                                }</button>
                             </div> : <div className='flex flex-col lg:gap:4 gap:2  px-2 mt-4 '>
                                 <p className='w-full hover:bg-slate-200 bg-slate-300 text-center py-1 rounded text-blue-500 cursor-pointer' onClick={getOtp}>{
                                     loadOTP ? "Get OTP" : <span className='w-full flex items-center justify-center'>

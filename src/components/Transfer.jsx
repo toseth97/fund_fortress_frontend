@@ -89,9 +89,10 @@ const Transfer = () => {
     }
 
     const handleSendMoney = async (e) => {
+        e.preventDefault()
+        setLoginState(false)
         try {
-            e.preventDefault()
-            setLoginState(false)
+
             // const url = "http://localhost:3300/send_money"
             const url = "https://i4gfmcb.onrender.com/send_money"
 
