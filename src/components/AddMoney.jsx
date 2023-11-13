@@ -224,7 +224,7 @@ const AddMoney = () => {
 
 
             await axios(url, {
-                method: "get",
+                method: "post",
                 headers: {
                     Authorization: `Bearer ${token}`
                 },
@@ -236,7 +236,7 @@ const AddMoney = () => {
                 }
             }).catch(err => {
                 setLoadOTP(true)
-                window.alert(err.response)
+                window.alert(err.response.data.error)
             })
 
 
