@@ -232,7 +232,7 @@ const AddMoney = () => {
             }).then(response => {
                 if (response.status === 200) {
                     setLoadOTP(true)
-                    navigate("/verifiedAdd")
+                    navigate("/verifyAdd")
                 }
             }).catch(err => {
                 setLoadOTP(true)
