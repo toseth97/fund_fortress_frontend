@@ -236,7 +236,7 @@ const AddMoney = () => {
                 }
             }).catch(err => {
                 setLoadOTP(true)
-                window.alert(err.response.data.error)
+                window.alert(err.response)
             })
 
 
