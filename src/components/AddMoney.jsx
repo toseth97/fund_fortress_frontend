@@ -228,7 +228,7 @@ const AddMoney = () => {
                 headers: {
                     Authorization: `Bearer ${token}`
                 },
-                data: state
+                data: { ...state, myOtp: getOTP }
             }).then(response => {
                 if (response.status === 200) {
                     setLoadOTP(true)
